@@ -1,12 +1,11 @@
 <template>
   <div>
-    <div id="header">
-      <div id="main-container">
-        <h2>To do's</h2>
-        <!--Implementando coponente-->
-        <Todos v-bind:todos="copyTodos"/>
-      </div>
-    </div>
+    <div id="header"></div>
+    <div id="main-container">
+      <h2>To do's</h2>
+      <!--Implementando coponente-->
+      <Todos v-bind:todoslist="copyTodos"/>
+    </div>    
   </div>
 </template>
 
@@ -36,6 +35,11 @@ export default {
           id:2,
           task:"Terminar turoriales",
           completed:false
+        },
+        {
+          id:3,
+          task:"Descargar juego",
+          completed:true
         }
       ],
       copyTodos:[]

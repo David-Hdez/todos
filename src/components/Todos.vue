@@ -1,20 +1,19 @@
 <template>
   <div>
     <!--v-bind para attach, para elemento del for debe ser identificado-->
-    <div v-bind:key="item.id" v-for="item in todos">
-        <div>{{ item.task }}</div>
+    <div v-bind:key="todo.id" v-for="todo in todoslist">
+      <TodoItem v-bind:todo="todo" />      
     </div>
   </div>
 </template>
 
 <script>
+import TodoItem from './TodoItem.vue'
+
 //Definiendo componente
 export default{
-    name: 'Todos',
-    props: ['todos']//Propiedades de tipo todos
+  name: 'Todos',
+  props: ['todoslist'],//Propiedad de tipo todos
+  components: {TodoItem}
 }
 </script>
-
-<style>
-
-</style>
