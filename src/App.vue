@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div id="header"></div>
+    <div id="header">
+      <Search v-on:query-change="querySearch"/>
+    </div>
     <div id="main-container">
       <h2>To do's</h2>
       <!--Implementando coponentes-->
@@ -11,13 +13,14 @@
 </template>
 
 <script>
+import Search from './components/Search.vue'
 import Todos from './components/Todos.vue'
 import TodoAdd from './components/TodoAdd.vue'//Estructura de la aplicación
 
 export default {
   name: 'App',
   components: {
-    Todos, TodoAdd
+    Todos, TodoAdd, Search
   },
   methods:{
     deleteTodo(id){
@@ -27,6 +30,17 @@ export default {
     addTodo(todo){
       this.todos.push(todo);
       this.copyTodos=[... this.todos];
+    },
+    querySearch(query){
+      if (query.trim()==='') {
+        this.copyTodos=[... this.todos]
+      } else {
+        const temp=this.todos.filter(todo =>{
+          return todo.task.includes(query);
+        });
+
+        this.copyTodos=[... temp]
+      }
     }
   },
   data(){
