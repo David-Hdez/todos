@@ -4,7 +4,7 @@
     <div id="main-container">
       <h2>To do's</h2>
       <!--Implementando coponente-->
-      <Todos v-bind:todoslist="copyTodos"/>
+      <Todos v-bind:todoslist="copyTodos" v-on:delete-todo="deleteTodo"/>
     </div>    
   </div>
 </template>
@@ -17,6 +17,12 @@ export default {
   name: 'App',
   components: {
     Todos
+  },
+  methods:{
+    deleteTodo(id){
+      this.todos=this.todos.filter(todo => todo.id != id);//Regresa todos los elementos, exepto el que se va a eliminar
+      this.copyTodos=[... this.todos];
+    }
   },
   data(){
     return{
