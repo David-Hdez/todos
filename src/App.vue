@@ -3,7 +3,8 @@
     <div id="header"></div>
     <div id="main-container">
       <h2>To do's</h2>
-      <!--Implementando coponente-->
+      <!--Implementando coponentes-->
+      <TodoAdd v-on:add-todo="addTodo"/>
       <Todos v-bind:todoslist="copyTodos" v-on:delete-todo="deleteTodo"/>
     </div>    
   </div>
@@ -11,16 +12,20 @@
 
 <script>
 import Todos from './components/Todos.vue'
-//import TodoAdd from './components/TodoAdd.vue'//Estructura de la aplicación
+import TodoAdd from './components/TodoAdd.vue'//Estructura de la aplicación
 
 export default {
   name: 'App',
   components: {
-    Todos
+    Todos, TodoAdd
   },
   methods:{
     deleteTodo(id){
       this.todos=this.todos.filter(todo => todo.id != id);//Regresa todos los elementos, exepto el que se va a eliminar
+      this.copyTodos=[... this.todos];
+    },
+    addTodo(todo){
+      this.todos.push(todo);
       this.copyTodos=[... this.todos];
     }
   },
