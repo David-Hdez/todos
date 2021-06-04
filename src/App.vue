@@ -3,47 +3,46 @@
     <div id="header">
       <div id="main-container">
         <h2>To do's</h2>
+        <!--Implementando coponente-->
+        <Todos v-bind:todos="copyTodos"/>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Search from './components/Search.vue'
 import Todos from './components/Todos.vue'
-import TodoAdd from './components/TodoAdd.vue'//Estructura de la aplicación
+//import TodoAdd from './components/TodoAdd.vue'//Estructura de la aplicación
 
 export default {
   name: 'App',
   components: {
-    Search, Todos, TodoAdd
+    Todos
   },
-  data: function () {//Distribuir los datos a los componentes hijo
-    return {
+  data(){
+    return{
       todos:[
         {
-          id: 0,
-          task: "Comprar stand monitor",
-          completed: false
+          id:0,
+          task:"Comprar stand para monitor",
+          completed:false
         },
         {
-          id: 1,
-          task: "Cambiar collation MariaDB",
-          completed: false
+          id:1,
+          task:"Juego de Epic Games",
+          completed:false
         },
         {
-          id: 1,
-          task: "Completar turoriales",
-          completed: false
+          id:2,
+          task:"Terminar turoriales",
+          completed:false
         }
       ],
-      copyTodos:[],//Busqueda
-      created: function () {
-        // `this` hace referencia a la instancia vm
-        console.debug('todos es: ' + this.todos)
-        this.copyTodos=[... this.todos];//Copiar array con ES6
-      }
+      copyTodos:[]
     }
+  },
+  created(){
+    this.copyTodos=[... this.todos]
   }
 }
 </script>
